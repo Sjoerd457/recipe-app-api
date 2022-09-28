@@ -8,16 +8,19 @@ from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
 
+
 CREATE_USER_URL = reverse('user:create')
 TOKEN_URL = reverse('user:token')
 ME_URL = reverse('user:me')
+
 
 def create_user(**params):
     """Create and return a new user."""
     return get_user_model().objects.create_user(**params)
 
+
 class PublicUserApiTests(TestCase):
-    """Test the public feature of the user API."""
+    """Test the public features of the user API."""
 
     def setUp(self):
         self.client = APIClient()
@@ -27,7 +30,7 @@ class PublicUserApiTests(TestCase):
         payload = {
             'email': 'test@example.com',
             'password': 'testpass123',
-            'name': 'Test Name'
+            'name': 'Test Name',
         }
 
         res = self.client.post(CREATE_USER_URL, payload)
@@ -66,16 +69,16 @@ class PublicUserApiTests(TestCase):
 
     def test_create_token_for_user(self):
         """Test generates token for valid credentials."""
-        user_datails = {
+        user_details = {
             'name': 'Test name',
             'email': 'test@example.com',
             'password': 'test-user-password123',
         }
-        create_user(**user_datails)
+        create_user(**user_details)
 
         payload = {
-            'email': user_datails['email'],
-            'password': user_datails['password'],
+            'email': user_details['email'],
+            'password': user_details['password'],
         }
         res = self.client.post(TOKEN_URL, payload)
 
@@ -109,7 +112,7 @@ class PublicUserApiTests(TestCase):
 class PrivateUserApiTests(TestCase):
     """Test API requests that require authentication."""
 
-    def setUP(self):
+    def setUp(self):
         self.user = create_user(
             email='test@example.com',
             password='testpass123',
