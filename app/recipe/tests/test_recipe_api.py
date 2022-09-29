@@ -2,7 +2,6 @@
 Tests for recipe APIs.
 """
 from decimal import Decimal
-from email.policy import default
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase
@@ -14,6 +13,7 @@ from rest_framework.test import APIClient
 from core.models import Recipe
 
 from recipe.serializers import RecipeSerializer
+
 
 RECIPES_URL = reverse('recipe:recipe-list')
 
@@ -32,6 +32,7 @@ def create_recipe(user, **params):
     recipe = Recipe.objects.create(user=user, **defaults)
     return recipe
 
+
 class PublicRecipeAPITests(TestCase):
     """Test unauthenticated API requests."""
 
@@ -43,6 +44,7 @@ class PublicRecipeAPITests(TestCase):
         res = self.client.get(RECIPES_URL)
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+
 
 class PrivateRecipeApiTests(TestCase):
     """Test authenticated API requests."""
