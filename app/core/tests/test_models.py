@@ -2,12 +2,12 @@
 Tests for models.
 """
 from decimal import Decimal
-from doctest import debug_script
 
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
 from core import models
+
 
 def create_user(email='user@example.com', password='testpass123'):
     """Create and return a new user."""
