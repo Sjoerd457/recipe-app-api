@@ -1,7 +1,6 @@
 """
 Database models.
 """
-from urllib.parse import MAX_CACHE_SIZE
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import (
@@ -61,6 +60,7 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class Tag(models.Model):
     """Tag for filtering recipes."""

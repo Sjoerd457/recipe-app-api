@@ -1,13 +1,13 @@
 """
 Serializers for recipe APIs
 """
-from pickletools import read_long1
 from rest_framework import serializers
 
 from core.models import (
     Recipe,
     Tag,
 )
+
 
 class RecipeSerializer(serializers.ModelSerializer):
     """Serializer for recipes."""
