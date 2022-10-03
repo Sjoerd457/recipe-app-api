@@ -202,7 +202,7 @@ class PrivateRecipeApiTests(TestCase):
             'title': 'Thai Prawn Curry',
             'time_minutes': 30,
             'price': Decimal('2.50'),
-            'tags': [{'name', 'Thai'}, {'name': 'Dinner'}],
+            'tags': [{'name': 'Thai'}, {'name': 'Dinner'}],
         }
         res = self.client.post(RECIPES_URL, payload, format='json')
 
@@ -234,7 +234,7 @@ class PrivateRecipeApiTests(TestCase):
         self.assertEqual(recipes.count(),1)
         recipe = recipes[0]
         self.assertEqual(recipe.tags.count(), 2)
-        self.assetIn(tag_indian, recipe.tags.all())
+        self.assertIn(tag_indian, recipe.tags.all())
         for tag in payload['tags']:
             exists = recipe.tags.filter(
                 name=tag['name'],
