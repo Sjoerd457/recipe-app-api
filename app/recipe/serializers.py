@@ -9,8 +9,9 @@ from core.models import (
     Ingredient,
 )
 
+
 class IngredientSerializer(serializers.ModelSerializer):
-    """Serializer for ingriedient."""
+    """Serializer for ingriedients."""
 
     class Meta:
         model = Ingredient
@@ -57,7 +58,6 @@ class RecipeDetailSerializer(RecipeSerializer):
             )
             recipe.tags.add(tag_obj)
 
-
     def _get_or_create_ingredients(self, ingredients, recipe):
         """Handle getting or creating ingredients as needed."""
         auth_user = self.context['request'].user
@@ -68,7 +68,6 @@ class RecipeDetailSerializer(RecipeSerializer):
             )
             recipe.ingredients.add(ingredient_obj)
 
-
     def create(self, validated_data):
         """Create a recipe."""
         tags = validated_data.pop('tags', [])
@@ -76,6 +75,7 @@ class RecipeDetailSerializer(RecipeSerializer):
         recipe = Recipe.objects.create(**validated_data)
         self._get_or_create_tags(tags, recipe)
         self._get_or_create_ingredients(ingredients, recipe)
+
         return recipe
 
     def update(self, instance, validated_data):

@@ -17,6 +17,7 @@ from core.models import (
 
 from recipe.serializers import IngredientSerializer
 
+
 INGREDIENTS_URL = reverse('recipe:ingredient-list')
 
 
@@ -98,7 +99,6 @@ class PrivateIngredientsApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
         ingredients = Ingredient.objects.filter(user=self.user)
         self.assertFalse(ingredients.exists())
-
 
     def test_filter_ingredients_assigned_to_recipes(self):
         """Test listing ingedients to those assigned to recipes."""

@@ -4,7 +4,6 @@ Database models.
 import uuid
 import os
 
-from unittest.util import _MAX_LENGTH
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import (
@@ -87,6 +86,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
 class Ingredient(models.Model):
     """Ingredient for recipes."""
     name = models.CharField(max_length=255)
@@ -97,4 +97,3 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.name
-

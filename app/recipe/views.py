@@ -20,11 +20,12 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 from core.models import (
-    Ingredient,
     Recipe,
     Tag,
+    Ingredient,
 )
 from recipe import serializers
+
 
 @extend_schema_view(
     list=extend_schema(
@@ -104,6 +105,7 @@ class BaseRecipeAttrViewSet(mixins.DestroyModelMixin,
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        """Filter queryset to authenticated user."""
         return self.queryset.filter(user=self.request.user).order_by('-name')
 
 
