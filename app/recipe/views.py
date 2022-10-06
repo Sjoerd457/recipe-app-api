@@ -8,7 +8,6 @@ from drf_spectacular.utils import (
     OpenApiTypes,
 )
 
-from yaml import serialize
 from rest_framework import (
     viewsets,
     mixins,
